@@ -1,4 +1,5 @@
 package com.yolshin.ytask.service.entity;
 
-public interface TaskService {
+public interface TimerEntityService {
+
 }

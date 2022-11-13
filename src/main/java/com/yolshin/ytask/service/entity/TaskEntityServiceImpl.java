@@ -5,11 +5,11 @@ import com.yolshin.ytask.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TaskServiceImpl extends BaseTreeEntityServiceImpl<Task> implements TaskService {
+public class TaskEntityServiceImpl extends BaseTreeEntityServiceImpl<Task> implements TaskEntityService {
 
-    private final TaskRepository repository;
+    protected final TaskRepository repository;
 
-    public TaskServiceImpl(TaskRepository repository) {
+    public TaskEntityServiceImpl(TaskRepository repository) {
         super(repository);
         this.repository = repository;
     }

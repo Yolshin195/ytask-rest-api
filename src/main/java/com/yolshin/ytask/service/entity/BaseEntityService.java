@@ -10,5 +10,7 @@ public interface BaseEntityService<T extends BaseEntity> {
     T update(T entity);
     void delete(T entity);
     void deleteById(UUID uuid);
+    boolean existsById(UUID id);
+    T findById(UUID id);
 
 }

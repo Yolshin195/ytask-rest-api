@@ -48,10 +48,22 @@ public class BaseEntityServiceImpl<T extends BaseEntity> implements BaseEntitySe
         if (id == null)
             throw new RuntimeException("BaseEntityServiceImpl.deleteById id equals null");
 
-        var entity = repository
-                .findByIdAndDeleteTsIsNull(id)
-                .orElseThrow(() -> new RuntimeException("BaseEntityServiceImpl not found by id '" + id + "'"));
+       T entity = findById(id);
 
         delete(entity);
+    }
+
+    public T findById(UUID id) {
+        if (id == null)
+            throw new RuntimeException("BaseEntityServiceImpl.deleteById id equals null");
+
+        return repository
+                .findByIdAndDeleteTsIsNull(id)
+                .orElseThrow(() -> new RuntimeException("BaseEntityServiceImpl not found by id '" + id + "'"));
+    }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return repository.existsByIdAndDeleteTsIsNull(id);
     }
 }

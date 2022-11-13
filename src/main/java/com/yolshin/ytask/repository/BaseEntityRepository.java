@@ -10,4 +10,5 @@ import java.util.UUID;
 @NoRepositoryBean
 public interface BaseEntityRepository<T extends BaseEntity> extends JpaRepository<T, UUID> {
     Optional<T> findByIdAndDeleteTsIsNull(UUID id);
+    Boolean existsByIdAndDeleteTsIsNull(UUID id);
 }
