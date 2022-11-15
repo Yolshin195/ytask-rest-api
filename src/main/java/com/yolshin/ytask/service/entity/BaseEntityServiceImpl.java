@@ -18,6 +18,7 @@ public class BaseEntityServiceImpl<T extends BaseEntity> implements BaseEntitySe
         if (entity == null)
             throw new RuntimeException("BaseEntityServiceImpl.save entity equals null");
 
+        entity.setId(UUID.randomUUID());
         entity.setCreateTs(LocalDateTime.now());
 
         return repository.save(entity);

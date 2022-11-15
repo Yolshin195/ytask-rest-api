@@ -34,7 +34,7 @@ public class TimerServiceImpl implements TimerService {
         Timer timer = timerEntityService.findById(id);
         timer.setEnd(LocalDateTime.now());
 
-        return timer;
+        return timerEntityService.update(timer);
     }
 
     @Override

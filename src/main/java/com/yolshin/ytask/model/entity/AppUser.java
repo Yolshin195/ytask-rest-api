@@ -1,18 +1,19 @@
 package com.yolshin.ytask.model.entity;
 
-import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Data
+
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "yt_user")
-public class User extends BaseEntity {
+public class AppUser extends BaseEntity {
 
     @Column(name = "active")
     Boolean active;
@@ -32,7 +33,7 @@ public class User extends BaseEntity {
     @Column(name = "email")
     String email;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    Role role;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "app_user_id")
+    List<AppUserRole> appRoles;
 }

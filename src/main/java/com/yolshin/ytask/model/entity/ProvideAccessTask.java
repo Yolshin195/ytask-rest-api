@@ -1,6 +1,6 @@
 package com.yolshin.ytask.model.entity;
 
-import lombok.Data;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Data
 @Getter
 @Setter
 @Entity
@@ -18,7 +17,7 @@ public class ProvideAccessTask extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    User user;
+    AppUser appUser;
 
     @ManyToOne
     @JoinColumn(name = "task_id")

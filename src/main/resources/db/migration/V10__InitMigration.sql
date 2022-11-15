@@ -90,3 +90,19 @@ CREATE TABLE yt_timer (
 );
 
 ALTER TABLE yt_timer ADD CONSTRAINT FK_YT_TIMER_ON_TASK FOREIGN KEY (task_id) REFERENCES yt_task (id);
+
+CREATE TABLE yt_app_user_role (
+  id UUID NOT NULL,
+   create_ts TIMESTAMP,
+   created_by VARCHAR(255),
+   update_ts TIMESTAMP,
+   update_by VARCHAR(255),
+   version INT,
+   delete_ts TIMESTAMP,
+   delete_by VARCHAR(255),
+   app_user_id UUID,
+   app_role VARCHAR(255),
+   CONSTRAINT pk_yt_app_user_role PRIMARY KEY (id)
+);
+
+ALTER TABLE yt_app_user_role ADD CONSTRAINT FK_YT_APP_USER_ROLE_ON_APP_USER FOREIGN KEY (app_user_id) REFERENCES yt_user (id);
