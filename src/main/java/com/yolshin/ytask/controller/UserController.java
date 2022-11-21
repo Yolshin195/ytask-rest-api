@@ -1,6 +1,7 @@
 package com.yolshin.ytask.controller;
 
 import com.yolshin.ytask.model.dto.LoginRequest;
+import com.yolshin.ytask.model.dto.LoginResponse;
 import com.yolshin.ytask.model.dto.UserDataDTO;
 import com.yolshin.ytask.model.dto.UserResponseDTO;
 import com.yolshin.ytask.model.entity.AppUser;
@@ -26,8 +27,9 @@ public class UserController {
     private final ModelMapper modelMapper;
 
     @PostMapping("/signin")
-    public String login(@RequestBody LoginRequest loginRequest) {
-        return userService.signin(loginRequest.getUsername(), loginRequest.getPassword());
+    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
+        String token = userService.signin(loginRequest.getUsername(), loginRequest.getPassword());
+        return new LoginResponse(token);
     }
 
     @PostMapping("/signup")
@@ -59,8 +61,10 @@ public class UserController {
 
     @GetMapping("/refresh")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
-    public String refresh(HttpServletRequest req) {
-        return userService.refresh(req.getRemoteUser());
+    public LoginResponse refresh(HttpServletRequest req) {
+        String token = userService.refresh(req.getRemoteUser());
+
+        return new LoginResponse(token);
     }
 
 }

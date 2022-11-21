@@ -1,7 +1,6 @@
 package com.yolshin.ytask.model.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -15,27 +14,34 @@ public abstract class BaseEntity {
     @Id
     protected UUID id;
 
+    @JsonIgnore
     @Column(name = "create_ts")
     protected LocalDateTime createTs;
 
+    @JsonIgnore
     @Column(name = "created_by")
     protected String createdBy;
 
+    @JsonIgnore
     @Column(name = "update_ts")
     protected LocalDateTime updateTs;
 
-    @Column(name = "update_by")
-    protected String updateBy;
+    @JsonIgnore
+    @Column(name = "updated_by")
+    protected String updatedBy;
 
     @Version
+    @JsonIgnore
     @Column(name = "version")
     protected Integer version;
 
+    @JsonIgnore
     @Column(name = "delete_ts")
     protected LocalDateTime deleteTs;
 
-    @Column(name = "delete_by")
-    protected String deleteBy;
+    @JsonIgnore
+    @Column(name = "deleted_by")
+    protected String deletedBy;
 
     @Override
     public boolean equals(Object o) {
@@ -84,12 +90,12 @@ public abstract class BaseEntity {
         this.updateTs = updateTs;
     }
 
-    public String getUpdateBy() {
-        return updateBy;
+    public String getUpdatedBy() {
+        return updatedBy;
     }
 
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     public Integer getVersion() {
@@ -108,11 +114,11 @@ public abstract class BaseEntity {
         this.deleteTs = deleteTs;
     }
 
-    public String getDeleteBy() {
-        return deleteBy;
+    public String getDeletedBy() {
+        return deletedBy;
     }
 
-    public void setDeleteBy(String deleteBy) {
-        this.deleteBy = deleteBy;
+    public void setDeletedBy(String deletedBy) {
+        this.deletedBy = deletedBy;
     }
 }

@@ -1,10 +1,9 @@
 package com.yolshin.ytask.model.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.UUID;
 
 @ToString
 @RequiredArgsConstructor
@@ -20,9 +19,8 @@ public class Task extends BaseTreeEntity {
     @Column(name = "description")
     String description;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    AppUser author;
+    @Column(name = "author_id")
+    UUID author;
 
     @Column(name = "task_status")
     Integer taskStatus;
@@ -33,18 +31,5 @@ public class Task extends BaseTreeEntity {
 
     public void setTaskStatus(TaskStatusEnum taskStatus) {
         this.taskStatus = taskStatus.getValue();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Task task = (Task) o;
-        return id != null && Objects.equals(id, task.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
     }
 }

@@ -2,8 +2,11 @@ package com.yolshin.ytask.service.entity;
 
 import com.yolshin.ytask.model.entity.BaseEntity;
 import com.yolshin.ytask.repository.BaseEntityRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public class BaseEntityServiceImpl<T extends BaseEntity> implements BaseEntityService<T> {
@@ -66,5 +69,10 @@ public class BaseEntityServiceImpl<T extends BaseEntity> implements BaseEntitySe
     @Override
     public boolean existsById(UUID id) {
         return repository.existsByIdAndDeleteTsIsNull(id);
+    }
+
+    @Override
+    public Page<T> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 }
